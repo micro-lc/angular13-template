@@ -19,7 +19,7 @@ app-root {
 }
 
 .app-header {
-  background-color: #E76161;
+  background-color: #b04759;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -30,6 +30,6 @@ app-root {
 }
 
 .app-link {
-  color: #444e4d;
+  color: #e5f9db;
 }
 
