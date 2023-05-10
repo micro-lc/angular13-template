@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="https://github.com/micro-lc/angular13-template/actions">
-    <img src="https://github.com/micro-lc/angular13-template/workflows/Template%20CI/badge.svg" alt="Build Status" />
+    <img src="https://github.com/micro-lc/angular13-template/workflows/Main%20CI/badge.svg" alt="Build Status" />
   </a>
 
   <a href="https://coveralls.io/github/micro-lc/angular13-template?branch=main">
@@ -19,7 +19,8 @@
   </a>
 </p>
 
-Boilerplate for an Angular 13 [micro-lc parcel](https://micro-lc.io/docs/guides/applications/parcels). It implements the necessary features to work both standalone and in micro-lc.
+Boilerplate for an Angular 13 [micro-lc parcel](https://micro-lc.io/docs/guides/applications/parcels). It implements the
+necessary features to work both standalone and in micro-lc.
 
 ## Local development
 
@@ -35,7 +36,7 @@ corepack enable
 yarn install
 ```
 
-> 💡 **TIP**
+> **Note**
 >
 > If you whish to use NPM instead of Yarn, simply delete the `yarn.lock` file and run `npm install`.
 
@@ -52,6 +53,22 @@ Tests can be run with
 ```sh
 yarn coverage
 ```
+
+### Build
+
+To make the internal routing work in micro-lc, a custom script that removes the `<base>` tag from the generated HTML has
+to be executed at the end of the build process.
+
+If you don't whish to execute this step, simply change the build script in the `package.json`:
+
+```diff
+- 8 "build": "ng build && node plugins/post-html.js",
++ 8 "build": "ng build",
+```
+
+> **Warning**
+>
+> If you change the output directory, remember to change line 4 of the script (located in `plugins/post-html.js`) accordingly.
 
 ## Use in micro-lc
 
@@ -78,7 +95,7 @@ The internal routing of the application is already set up to work in micro-lc, m
 routes is dynamically computed on the bases of micro-lc `<base>`, as explained in the 
 [official documentation](https://micro-lc.io/docs/guides/applications/parcels/#injectbase).
 
-> 💡 **TIP**
+> **Note**
 >
 > If you whish to use a hash router in your application, change `app-routing.module.ts` file as such:
 > 
@@ -125,7 +142,7 @@ micro-lc related module.
 </html>
 ```
 
-> ⚠️ **Warning**
+> **Warning**
 >
 > `zone.js` is also imported in the entrypoint of this application to make it work in development mode. Whereas it is
 > advisable to remove it before bundling for production, the import it can be kept as long as the version matches the one

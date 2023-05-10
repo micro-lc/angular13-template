@@ -32,6 +32,22 @@ Tests can be run with
 yarn coverage
 ```
 
+### Build
+
+To make the internal routing work in micro-lc, a custom script that removes the `<base>` tag from the generated HTML has
+to be executed at the end of the build process.
+
+If you don't whish to execute this step, simply change the build script in the `package.json`:
+
+```diff
+- 8 "build": "ng build && node plugins/post-html.js",
++ 8 "build": "ng build",
+```
+
+> **Warning**
+>
+> If you change the output directory, remember to change line 4 of the script (located in `plugins/post-html.js`) accordingly.
+
 ## Use in micro-lc
 
 Applications build with this template can be used as-is in micro-lc as [parcels](https://micro-lc.io/docs/guides/applications/parcels).
@@ -57,7 +73,7 @@ The internal routing of the application is already set up to work in micro-lc, m
 routes is dynamically computed on the bases of micro-lc `<base>`, as explained in the 
 [official documentation](https://micro-lc.io/docs/guides/applications/parcels/#injectbase).
 
-> 💡 **TIP**
+> **Note**
 >
 > If you whish to use a hash router in your application, change `app-routing.module.ts` file as such:
 > 
@@ -104,7 +120,7 @@ micro-lc related module.
 </html>
 ```
 
-> ⚠️ **Warning**
+> **Warning**
 >
 > `zone.js` is also imported in the entrypoint of this application to make it work in development mode. Whereas it is
 > advisable to remove it before bundling for production, the import it can be kept as long as the version matches the one
